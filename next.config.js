@@ -18,6 +18,10 @@ const optimizedPackageImports = [
 
 const serverExternalPackages = [
   '@upstash/redis',
+  // @upstash/redis depends on uncrypto, whose package exports include a
+  // workerd condition. OpenNext needs it traced as a full external package,
+  // otherwise .open-next may contain package.json without dist/crypto.web.mjs.
+  'uncrypto',
   '@vercel/postgres',
   'better-sqlite3',
   'cheerio',
@@ -48,7 +52,7 @@ const createNextConfig = (phase) => {
     instrumentationHook: process.env.NODE_ENV === 'production' && !isCloudflare,
     optimizePackageImports: optimizedPackageImports,
     serverComponentsExternalPackages: serverExternalPackages,
-    webpackBuildWorker: true,
+    webpackBuildWorker: !isCloudflare,
   },
 
   // Uncoment to add domain whitelist
@@ -125,7 +129,10 @@ const createNextConfig = (phase) => {
   },
 };
 
-  if (isDevelopment) {
+  // next-pwa runs an additional webpack pass that is not needed for the
+  // Cloudflare/OpenNext worker bundle and can make Cloudflare builds fail with
+  // a generic "Build failed because of webpack errors" message.
+  if (isDevelopment || isCloudflare) {
     return nextConfig;
   }
 
