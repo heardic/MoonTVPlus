@@ -6,8 +6,8 @@ pages_build_output_dir = ".open-next"
 # D1 数据库绑定
 [[d1_databases]]
 binding = "DB"
-database_name = "moontvplus"
-database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+database_name = "moontv"
+database_id = "b64ecfd1-c040-42be-8995-edcab1b76ab1"
 
 [vars]
 NODE_ENV = "production"
