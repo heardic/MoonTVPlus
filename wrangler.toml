@@ -1,9 +1,11 @@
 name = "moontv-plus"
 compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
-main = ".open-next/worker.js"
-minify = true
 pages_build_output_dir = ".open-next/assets"
+# Cloudflare Pages 不支持 main 和 minify 字段
+# Worker 入口由 Pages 自动处理
+# main = ".open-next/worker.js"
+# minify = true
 # 静态资源配置由 pages_build_output_dir 处理
 # Cloudflare Pages 不支持 [assets] 段和 ASSETS binding
 
