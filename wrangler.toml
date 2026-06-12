@@ -8,7 +8,7 @@ pages_build_output_dir = ".open-next/assets"
 # Cloudflare Workers Assets 用于服务静态文件
 [assets]
 directory = ".open-next/assets"
-binding = "ASSETS"
+binding = "ASSETS_BINDING"
 
 # D1 数据库绑定
 [[d1_databases]]
