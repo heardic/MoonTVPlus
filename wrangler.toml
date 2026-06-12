@@ -4,11 +4,8 @@ compatibility_flags = ["nodejs_compat"]
 main = ".open-next/worker.js"
 minify = true
 pages_build_output_dir = ".open-next/assets"
-# 静态资源配置
-# Cloudflare Workers Assets 用于服务静态文件
-[assets]
-directory = ".open-next/assets"
-binding = "ASSETS_BINDING"
+# 静态资源配置由 pages_build_output_dir 处理
+# Cloudflare Pages 不支持 [assets] 段和 ASSETS binding
 
 # D1 数据库绑定
 [[d1_databases]]
